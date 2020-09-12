@@ -267,6 +267,17 @@ function ApplyModifiers(s, action, condition) {
     }
     successProbability = Math.min(successProbability, 1);
 
+    // Effects modifying durability cost
+    var durabilityCost = action.durabilityCost;
+    if ((AllActions.wasteNot.shortName in s.effects.countDowns) || (AllActions.wasteNot2.shortName in s.effects.countDowns)) {
+        if (isActionEq(action, AllActions.prudentTouch)) {
+            bQualityGain = 0;
+        }
+        else {
+            durabilityCost *= 0.5;
+        }
+    }
+
     // Effects modifying progress increase multiplier
     var progressIncreaseMultiplier = 1;
 
@@ -291,7 +302,7 @@ function ApplyModifiers(s, action, condition) {
             cpCost = 0;
         }
     }
-	if (isActionEq(action, AllActions.groundwork) && s.durabilityState < 20) {
+	if (isActionEq(action, AllActions.groundwork) && s.durabilityState < durabilityCost) {
         progressIncreaseMultiplier *= 0.5;
     }
 
@@ -357,17 +368,6 @@ function ApplyModifiers(s, action, condition) {
             control = 0;
             bQualityGain = 0;
             cpCost = 0;
-        }
-    }
-
-    // Effects modifying durability cost
-    var durabilityCost = action.durabilityCost;
-    if ((AllActions.wasteNot.shortName in s.effects.countDowns) || (AllActions.wasteNot2.shortName in s.effects.countDowns)) {
-        if (isActionEq(action, AllActions.prudentTouch)) {
-            bQualityGain = 0;
-        }
-        else {
-            durabilityCost *= 0.5;
         }
     }
 
@@ -513,6 +513,9 @@ function UpdateEffectCounters(s, action, condition, successProbability) {
             else {
                 s.wastedActions += 1;
             }
+        }
+        else if (action.shortName === AllActions.muscleMemory.shortName && s.step != 1) {
+            s.wastedActions += 1;
         }
         else {
             s.effects.countDowns[action.shortName] = action.activeTurns;
