@@ -3,6 +3,17 @@
     <div class="row-fluid">
     <div class="recipe-search-control" ng-controller="RecipeSearchController">
       <form class="form-inline">
+        <div class="control-group">
+          <label class="control-label">
+            <h5>
+              Custom Recipe &nbsp;
+              <label class="checkbox">
+                <input type="checkbox" name="customRecipe" ng-model="customRecipeChecked" id="useCustomRecipe"/>
+              </label>
+            </h5>
+          </label>
+        </div>
+
         <div class="dropdown">
           <div class="input-append">
             <span class="input-med uneditable-input">{{recipe.cls | translate}}</span>
@@ -16,7 +27,7 @@
           </div>
         </div>
 
-        <div class="my-dropdown" id="recipe-menu-root" >
+        <div class="my-dropdown" id="recipe-menu-root" ng-show="!customRecipeChecked">
           <div class="input-append">
             <span class="span4 uneditable-input my-dropdown-toggle">[{{recipe.baseLevel}}{{'*'.repeat(recipe.stars)}}] {{recipe.name}}</span>
 
@@ -43,6 +54,38 @@
               </li>
             </ul>
           </div>
+        </div>
+        <div style="display: inline-block;" ng-show="customRecipeChecked">
+          <label class="control-label">
+            Recipe Level
+            <label class="number">
+              <input type="number" style="width: 3em;" min="1" max="999" id="r-l"/>
+            </label>
+          </label>
+          <label class="control-label">
+            Difficulty
+            <label class="number">
+              <input type="number" style="width: 4em;" min="1" max="9999" id="dif"/>
+            </label>
+          </label>
+          <label class="control-label">
+            Durability
+            <label class="number">
+              <input type="number" style="width: 3em;" min="1" max="100" id="dur"/>
+            </label>
+          </label>
+          <label class="control-label">
+            Max Quality
+            <label class="number">
+              <input type="number" style="width: 5em;" min="1" max="99999" id="m-q"/>
+            </label>
+          </label>
+          <label class="control-label">
+            Suggested Craftmanship
+            <label class="number">
+              <input type="number" style="width: 4em;" min="1" max="9999" id="s-c"/>
+            </label>
+          </label>
         </div>
       </form>
     </div>	
