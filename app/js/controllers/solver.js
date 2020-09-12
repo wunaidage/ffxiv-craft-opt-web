@@ -157,12 +157,12 @@
       } else {
         theRecipe = $scope.recipe;
         theRecipe.baseLevel = Number(document.getElementById('r-l').value);
+        theRecipe.level = Number(document.getElementById('i-l').value);
         theRecipe.difficulty = Number(document.getElementById('dif').value);
         theRecipe.durability = Number(document.getElementById('dur').value);
         theRecipe.maxQuality = Number(document.getElementById('m-q').value);
         theRecipe.suggestedCraftsmanship = Number(document.getElementById('s-c').value);
         theRecipe.id = "customizedRecipe";
-        theRecipe.level = 1;
         theRecipe.name =  {
           "cn": "自定义",
           "de": "Customized",

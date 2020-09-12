@@ -12,6 +12,10 @@
               </label>
             </h5>
           </label>
+          <p ng-show="customRecipeChecked">
+            if the recipe does not show item level, guess by trying same level recipe's item level, use the trial synthesis to make sure the macro does not fail. </br>
+            for isgardian restoration: recipe lvl 20 -> item lvl 20, 40 -> 40, 60 -> 150, 70 -> 290, 80 -> 430, 80**** -> 490
+          </p>
         </div>
 
         <div class="dropdown">
@@ -60,6 +64,12 @@
             Recipe Level
             <label class="number">
               <input type="number" style="width: 3em;" min="1" max="999" id="r-l"/>
+            </label>
+          </label>
+          <label class="control-label">
+            Item Level
+            <label class="number">
+              <input type="number" style="width: 3em;" min="1" max="999" id="i-l"/>
             </label>
           </label>
           <label class="control-label">
